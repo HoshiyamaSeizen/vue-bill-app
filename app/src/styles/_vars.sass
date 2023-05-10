@@ -1,0 +1,14 @@
+@mixin no-select
+    -webkit-user-select: none !important
+    -ms-user-select: none !important
+    user-select: none !important
+
+@mixin shadow($args)
+    -webkit-box-shadow: $args
+    -moz-box-shadow: $args
+    box-shadow: $args
+
+$color-main: hsl(36, 23%, 25%)
+$color-secondary: hsl(50, 68%, 88%)
+$color-text: hsl(60, 7%, 23%)
+$color-active: hsl(39, 60%, 40%)

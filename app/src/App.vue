@@ -1,18 +1,25 @@
 <script setup></script>
 
 <template>
-	<div class="container">
-		<button type="button" class="btn btn-primary">Hello World</button>
-		<router-link to="/">Go to Home</router-link>
-		<router-link to="/about">Go to About</router-link>
-
+	<nav>
+		<router-link to="/">Home</router-link>
+		<router-link to="/about">About</router-link>
+		<router-link to="/persons">Persons</router-link>
+	</nav>
+	<main>
 		<router-view></router-view>
-	</div>
+	</main>
 </template>
 
 <style scoped lang="sass">
-*
-  display: block
-  margin: auto
-  text-align: center
+main, a, button
+	display: block
+	margin: auto
+	text-align: center
+nav
+	display: flex
+	align-items: space-between
+	justify-content: center
+	padding: 20px
+	text-transform: uppercase
 </style>
