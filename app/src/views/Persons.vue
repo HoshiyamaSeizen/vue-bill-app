@@ -1,26 +1,63 @@
-<script setup></script>
+<script>
+import { nextTick } from 'vue'
+
+export default{
+	data() {
+		return {
+			clients: [...Array(10).keys()].map(id => { return {name: "John Doe "+(id+1)}}),
+			editName: "",
+			editId: null
+		}
+	},
+	methods: {
+		remove(id) {
+			this.stopEdit();
+			this.clients.splice(id, 1);
+		},
+		startEdit(id) {
+			this.stopEdit();
+			this.editId = id;
+			this.editName = this.clients[id].name
+		},
+		stopEdit() {
+			if(this.editId === null) return;
+			this.clients[this.editId].name = this.editName || `Client ${this.editId+1}`;
+			this.editId = null;
+		},
+		add(){
+			this.clients.push({name: ""});
+			this.startEdit(this.clients.length - 1);
+			nextTick(() => {
+				const list = this.$el.querySelector('.person-list');
+				list.scrollTop = list.scrollHeight;
+			})
+		}
+	}
+}
+</script>
 
 <template>
 	<div class="container">
 		<h1>Persons</h1>
-		<ul>
-			<li class="list-item" v-for="id in [...Array(10).keys()]">
+		<ul class="person-list">
+			<li class="list-item" v-for="client, id in clients" :class="{editing: id === editId}">
 				<div class="details">
-					<div class="icon">J</div>
-					<p v-if="id !== 5" class="name">John Doe {{ id + 1 }}</p>
+					<div class="icon">{{client.name[0]}}</div>
+					<p v-if="id !== editId" class="name">{{client.name}}</p>
 					<input
 						v-else
+						v-model="editName"
 						type="text"
 						name="name-inp"
 						id="name-inp"
 						placeholder="Enter the name..."
 					/>
 				</div>
-				<i v-if="id !== 5" class="bi bi-pencil-fill"></i>
-				<i v-else class="bi bi-check-lg"></i>
-				<i class="bi bi-trash-fill"></i>
+				<i v-if="id !== editId" class="bi bi-pencil-fill" @click="startEdit(id)"></i>
+				<i v-else class="bi bi-check-lg" @click="stopEdit()"></i>
+				<i class="bi bi-trash-fill" @click="remove(id)"></i>
 			</li>
-			<li class="new-user-btn"><i class="bi bi-person-plus-fill"></i>Add new</li>
+			<li class="new-user-btn" @click="add()"><i class="bi bi-person-plus-fill"></i>Add new</li>
 		</ul>
 	</div>
 </template>
