@@ -36,6 +36,7 @@ ul
     height: 75%
     list-style: none
     padding: 0
+    overflow-x: hidden
     overflow-y: auto
     li
         padding: 15px 25px
@@ -57,7 +58,7 @@ ul
                 &:hover
                     color: $color-active
         &:hover
-            scale: 1.02
+            scale: 1.01
             i
                 opacity: 1
         i

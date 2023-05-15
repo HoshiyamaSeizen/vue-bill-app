@@ -18,6 +18,11 @@
   -moz-osx-font-smoothing: grayscale
   -webkit-text-size-adjust: 100%
 
+::selection 
+    color: $color-active
+    background-color: lighten($color-active, 40%)
+
+
 body
   min-height: 100vh
   background-color: $color-main
@@ -44,6 +49,9 @@ a
     border: none
   &:active
     background: lighten($color-main, 4%)
+* /*Firefox*/
+  scrollbar-width: thin
+  scrollbar-color: lighten($color-main, 10%) transparent
 
 .container
   position: absolute
