@@ -47,8 +47,8 @@ export default{
 <template>
 	<div class="container">
 		<h1>Persons</h1>
-		<ul class="person-list">
-			<li class="list-item" v-for="{id, name} in clients" :class="{editing: id === editId}">
+		<TransitionGroup tag="ul" name="list" class="person-list">
+			<li class="list-item" v-for="{id, name} in clients" :class="{editing: id === editId}" :key="id">
 				<div class="details">
 					<div class="icon">{{name[0]}}</div>
 					<p v-if="id !== editId" class="name">{{name}}</p>
@@ -65,8 +65,8 @@ export default{
 				<i v-else class="bi bi-check-lg" @click="stopEdit()"></i>
 				<i class="bi bi-trash-fill" @click="remove(id)"></i>
 			</li>
-			<li class="new-user-btn" @click="add()"><i class="bi bi-person-plus-fill"></i>Add new</li>
-		</ul>
+			<li class="new-user-btn" @click="add()" :key="-1"><i class="bi bi-person-plus-fill"></i>Add new</li>
+		</TransitionGroup>
 	</div>
 </template>
 
@@ -153,4 +153,13 @@ i.bi-check-lg
         color: darkgreen !important
 i.bi-trash-fill:hover
     color: darkred !important
+.list-move,
+.list-enter-active,
+.list-leave-active
+  transition: all 300ms ease-out
+.list-enter-from,
+.list-leave-to
+  opacity: 0
+  scale: 1 0
+  transform: translateX(30px)
 </style>
