@@ -1,36 +1,44 @@
 <script>
 import { nextTick } from 'vue'
+import { mapState, mapActions } from 'vuex'
 
 export default{
 	data() {
 		return {
-			clients: [...Array(10).keys()].map(id => { return {name: "John Doe "+(id+1)}}),
 			editName: "",
 			editId: null
 		}
 	},
+	computed: {
+		...mapState('clientStore', {
+			clients: state => state.clients,
+		}),
+	},
 	methods: {
+		...mapActions('clientStore', [
+			'addClient', 'editClient', 'removeClient'
+		]),
 		remove(id) {
 			this.stopEdit();
-			this.clients.splice(id, 1);
+			this.removeClient({id});
 		},
 		startEdit(id) {
 			this.stopEdit();
 			this.editId = id;
-			this.editName = this.clients[id].name
+			this.editName = this.clients.find(c => c.id === id).name;
 		},
 		stopEdit() {
 			if(this.editId === null) return;
-			this.clients[this.editId].name = this.editName || `Client ${this.editId+1}`;
+			this.editClient({id: this.editId, name: this.editName});
 			this.editId = null;
 		},
 		add(){
-			this.clients.push({name: ""});
-			this.startEdit(this.clients.length - 1);
+			this.addClient({name: ""});
+			this.startEdit(this.clients[this.clients.length - 1].id);
 			nextTick(() => {
 				const list = this.$el.querySelector('.person-list');
 				list.scrollTop = list.scrollHeight;
-			})
+			});
 		}
 	}
 }
@@ -40,10 +48,10 @@ export default{
 	<div class="container">
 		<h1>Persons</h1>
 		<ul class="person-list">
-			<li class="list-item" v-for="client, id in clients" :class="{editing: id === editId}">
+			<li class="list-item" v-for="{id, name} in clients" :class="{editing: id === editId}">
 				<div class="details">
-					<div class="icon">{{client.name[0]}}</div>
-					<p v-if="id !== editId" class="name">{{client.name}}</p>
+					<div class="icon">{{name[0]}}</div>
+					<p v-if="id !== editId" class="name">{{name}}</p>
 					<input
 						v-else
 						v-model="editName"
