@@ -32,6 +32,7 @@ export default{
             const product = this.products.find(p => p.id === id);
 			this.editName = product.name;
             this.editPrice = product.price;
+			nextTick(() => this.$el.querySelector('#name-inp').focus());
 		},
 		stopEdit() {
 			if(this.editId === null) return;
@@ -44,11 +45,18 @@ export default{
 			nextTick(() => {
 				const list = this.$el.querySelector('.product-list');
 				list.scrollTop = list.scrollHeight;
+				this.$el.querySelector('#name-inp').focus();
 			});
 		},
         setBuyer(id, buyer){
             this.editBuyer({id, buyer})
-        }
+        },
+		handleInputKey(e, target, focus = false){
+			if(!['Tab', 'Enter'].includes(e.code)) return;
+			e.preventDefault();
+			const el = this.$el.querySelector(target);
+			focus ? el.focus() : el.click();
+		}
 	}
 }
 </script>
@@ -69,6 +77,7 @@ export default{
                                 name="name-inp"
                                 id="name-inp"
                                 placeholder="Enter the name..."
+								@keydown="(e) => this.handleInputKey(e, '#price-inp', true)"
                             />
                             <p v-if="id !== editId" class="price">${{price}}</p>
                             <input
@@ -78,6 +87,7 @@ export default{
                                 name="price-inp"
                                 id="price-inp"
                                 placeholder="Enter the price..."
+								@keydown="(e) => this.handleInputKey(e, '.bi-check-lg')"
                             />
                         </div>
                         <div class="buyer-select">

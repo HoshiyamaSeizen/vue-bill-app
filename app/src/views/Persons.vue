@@ -26,6 +26,7 @@ export default{
 			this.stopEdit();
 			this.editId = id;
 			this.editName = this.clients.find(c => c.id === id).name;
+			nextTick(() => this.$el.querySelector('#name-inp').focus());
 		},
 		stopEdit() {
 			if(this.editId === null) return;
@@ -38,7 +39,13 @@ export default{
 			nextTick(() => {
 				const list = this.$el.querySelector('.person-list');
 				list.scrollTop = list.scrollHeight;
+				this.$el.querySelector('#name-inp').focus();
 			});
+		},
+		handleInputKey(e, target){
+			if(!['Tab', 'Enter'].includes(e.code)) return;
+			e.preventDefault();
+			this.$el.querySelector(target).click();
 		}
 	}
 }
@@ -59,6 +66,7 @@ export default{
 						name="name-inp"
 						id="name-inp"
 						placeholder="Enter the name..."
+						@keydown="(e) => this.handleInputKey(e, '.bi-check-lg')"
 					/>
 				</div>
 				<i v-if="id !== editId" class="bi bi-pencil-fill" @click="startEdit(id)"></i>
