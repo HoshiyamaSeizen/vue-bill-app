@@ -67,6 +67,7 @@ export default{
 			</li>
 			<li class="new-user-btn" @click="add()" :key="-1"><i class="bi bi-person-plus-fill"></i>Add new</li>
 		</TransitionGroup>
+        <router-link class="next-btn" to="/products">Next &#8594; Add products</router-link>
 	</div>
 </template>
 
@@ -147,19 +148,37 @@ ul
         scale: 0.99
     i
         margin-right: 15px
+.next-btn
+    display: block
+    width: 300px
+    margin: auto
+    padding: 10px 20px
+    transition: all 200ms ease
+    @include no-select
+    color: $color-secondary
+    background-color: $color-main
+    font-size: 1.3rem
+    border-radius: 8px
+    &:hover
+        scale: 1.01
+        background-color: lighten($color-main, 10%)
+    &:active
+        scale: 0.99
 i.bi-check-lg
     font-size: 2rem
     &:hover
         color: darkgreen !important
 i.bi-trash-fill:hover
     color: darkred !important
+.i-pointer
+    cursor: pointer
 .list-move,
 .list-enter-active,
 .list-leave-active
-  transition: all 300ms ease-out
+    transition: all 300ms ease-out
 .list-enter-from,
 .list-leave-to
-  opacity: 0
-  scale: 1 0
-  transform: translateX(30px)
+    opacity: 0
+    scale: 1 0
+    transform: translateX(30px)
 </style>
