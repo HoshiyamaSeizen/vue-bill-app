@@ -125,7 +125,7 @@ export default{
 			</li>
 			<li class="new-product-btn" @click="add()" :key="-1"><i class="bi bi-bag-plus-fill"></i>Add new</li>
 		</TransitionGroup>
-        <router-link class="next-btn" to="/">Next &#8594; Calculate cost</router-link>
+        <router-link class="next-btn" to="/bill">Next &#8594; Calculate cost</router-link>
 	</div>
 </template>
 
