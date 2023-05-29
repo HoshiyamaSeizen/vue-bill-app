@@ -22,9 +22,10 @@ export default {
         editBuyer(state, {id, buyer}){
             state.products.find(p => p.id === id).buyer=buyer;
         },
-        removeConsumer(state, {id}){
+        removeConsumer(state, {id, buyerChange}){
             state.products.forEach(product => {
-                product.consumers = product.consumers.filter(c => c !== id)
+                product.consumers = product.consumers.filter(c => c !== id);
+                if(product.buyer === id) product.buyer = buyerChange;
             })
         },
         toggleConsumer(state, {id, client}){

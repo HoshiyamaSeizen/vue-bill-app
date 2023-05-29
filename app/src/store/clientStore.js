@@ -7,6 +7,9 @@ export default {
       clients: [...Array(10).keys()].map(id => Client(id, "John Doe "+(id+1)))
     }
   },
+  getters: {
+    getFirstClientID: state => () => state.clients[0].id
+  },
   mutations: {
     add(state, {name}) {
       state.clients.push(Client(state.clients[state.clients.length-1]?.id+1 || 0, name));
@@ -25,9 +28,9 @@ export default {
     editClient({ commit }, payload) {
         commit('edit', payload);
     },
-    removeClient({ commit }, payload) {
+    removeClient({ commit, getters }, payload) {
         commit('remove', payload);
-        commit('productStore/removeConsumer', payload, { root: true })
+        commit('productStore/removeConsumer', { ...payload, buyerChange: getters.getFirstClientID() }, { root: true })
     }
   }
 }
