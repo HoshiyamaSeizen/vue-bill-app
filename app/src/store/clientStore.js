@@ -11,22 +11,23 @@ export default {
     add(state, {name}) {
       state.clients.push(Client(state.clients[state.clients.length-1]?.id+1 || 0, name));
     },
-	edit(state, {id, name}){
-	  state.clients.find(c => c.id === id).name = name || `Client ${id+1}`;
-	},
-	remove(state, {id}){
-	  state.clients = state.clients.filter(c => c.id !== id);
-	}
+    edit(state, {id, name}){
+      state.clients.find(c => c.id === id).name = name || `Client ${id+1}`;
+    },
+    remove(state, {id}){
+      state.clients = state.clients.filter(c => c.id !== id);
+    }
   },
   actions: {
-	addClient({ commit }, payload) {
-      commit('add', payload);
+    addClient({ commit }, payload) {
+        commit('add', payload);
     },
-	editClient({ commit }, payload) {
-      commit('edit', payload);
+    editClient({ commit }, payload) {
+        commit('edit', payload);
     },
-	removeClient({ commit }, payload) {
-      commit('remove', payload);
+    removeClient({ commit }, payload) {
+        commit('remove', payload);
+        commit('productStore/removeConsumer', payload, { root: true })
     }
   }
 }

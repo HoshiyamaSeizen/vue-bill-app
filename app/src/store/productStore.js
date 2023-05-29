@@ -22,6 +22,11 @@ export default {
         editBuyer(state, {id, buyer}){
             state.products.find(p => p.id === id).buyer=buyer;
         },
+        removeConsumer(state, {id}){
+            state.products.forEach(product => {
+                product.consumers = product.consumers.filter(c => c !== id)
+            })
+        },
         toggleConsumer(state, {id, client}){
             const consumers = state.products.find(p => p.id === id).consumers;
             const index = consumers.indexOf(client);
