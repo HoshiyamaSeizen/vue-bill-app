@@ -1,0 +1,21 @@
+<template>
+	<nav>
+		<router-link class="home" to="/">Home</router-link>
+		<router-link to="/persons">Persons</router-link>
+		<router-link to="/products">Products</router-link>
+		<router-link to="/bill">Bill</router-link>
+	</nav>
+</template>
+
+<style scoped lang="sass">
+main, a
+	display: block
+	margin: auto
+	text-align: center
+nav
+	display: flex
+	align-items: space-between
+	justify-content: center
+	padding: 20px
+	text-transform: uppercase
+</style>
