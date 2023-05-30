@@ -1,11 +1,12 @@
 <script>
 import Navbar from './components/NavbarComponent.vue';
-export default { components: { Navbar }}
+import Router from './components/Router.vue'
+export default { components: { Navbar, Router }}
 </script>
 
 <template>
 	<Navbar></Navbar>
 	<main>
-		<router-view></router-view>
+		<Router></Router>
 	</main>
 </template>
