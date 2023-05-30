@@ -22,7 +22,6 @@
     color: $color-active
     background-color: lighten($color-active, 40%)
 
-
 body
   min-height: 100vh
   background-color: $color-main
@@ -72,6 +71,27 @@ a
     @include no-select
     &.title
       outline: 1px dashed red
+  h1
+    border-bottom: 3px solid $color-main
+    padding-bottom: 20px
+    margin: 10px 8px 35px
 
   a
     color: $color-active
+
+  .next-btn
+    display: block
+    width: 300px
+    margin: auto
+    padding: 10px 20px
+    transition: all 200ms ease
+    @include no-select
+    color: $color-secondary
+    background-color: $color-main
+    font-size: 1.3rem
+    border-radius: 8px
+    &:hover
+        scale: 1.01
+        background-color: lighten($color-main, 10%)
+    &:active
+        scale: 0.99

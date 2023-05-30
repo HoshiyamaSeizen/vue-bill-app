@@ -2,7 +2,12 @@
 import { nextTick } from 'vue'
 import { mapState, mapActions } from 'vuex'
 
+import List from '../components/ListComponent.vue'
+
 export default{
+    components: {
+        List
+    },
     data() {
 		return {
             result: [],
@@ -74,7 +79,7 @@ export default{
 <template>
     <div class="container">
 		<h1>Result</h1>
-		<TransitionGroup tag="ul" name="list" class="product-list">
+        <List>
             <template v-for="{id, name, payed, owed} in result">
                 <li class="list-item" v-if="payed > 0 || owed.length > 0" :key="id">
                     <p v-if="payed > 0" class="payment">
@@ -90,74 +95,22 @@ export default{
                     </p>
                 </li>
             </template>
-		</TransitionGroup>
+        </List>
         <router-link class="next-btn" to="/">New bill</router-link>
 	</div>
 </template>
 
 <style scoped lang="sass">
 @import '../styles/_vars.sass'
-h1
-    border-bottom: 3px solid $color-main
-    padding-bottom: 20px
-    margin: 10px 8px 35px
-ul
-    display: block
-    height: 75%
-    list-style: none
-    padding: 0
-    overflow-x: hidden
-    overflow-y: auto
-    li
-        padding: 15px 25px
-        margin: 10px 10px 0
-        border: 2px solid lighten($color-main, 50%)
-        border-radius: 8px
-        font-size: 1.5em
-        font-weight: 600
-        transition: scale 200ms ease-out
-        &.list-item
-            p
-                text-align: left
-                margin-bottom: 0
-                font-size: 1.5rem
-            span[transparent="true"]
-                color: transparent
-            .name, .money
-                font-weight: 700
-            .money
-                color: darkgreen
-.next-btn
-    display: block
-    width: 300px
-    margin: auto
-    padding: 10px 20px
-    transition: all 200ms ease
-    @include no-select
-    color: $color-secondary
-    background-color: $color-main
-    font-size: 1.3rem
-    border-radius: 8px
-    &:hover
-        scale: 1.01
-        background-color: lighten($color-main, 10%)
-    &:active
-        scale: 0.99
-i.bi-check-lg
-    font-size: 2rem
-    &:hover
-        color: darkgreen !important
-i.bi-trash-fill:hover
-    color: darkred !important
-.i-pointer
-    cursor: pointer
-.list-move,
-.list-enter-active,
-.list-leave-active
-    transition: all 300ms ease-out
-.list-enter-from,
-.list-leave-to
-    opacity: 0
-    scale: 1 0
-    transform: translateX(30px)
+.list-item
+    p
+        text-align: left
+        margin-bottom: 0
+        font-size: 1.5rem
+    span[transparent="true"]
+        color: transparent
+    .name, .money
+        font-weight: 700
+    .money
+        color: darkgreen
 </style>

@@ -2,7 +2,12 @@
 import { nextTick } from 'vue'
 import { mapState, mapActions } from 'vuex'
 
+import List from '../components/ListComponent.vue'
+
 export default{
+    components: {
+        List
+    },
 	data() {
 		return {
 			editName: "",
@@ -43,7 +48,7 @@ export default{
 			this.addProduct({name: "", price: 0, buyer: 0});
 			this.startEdit(this.products[this.products.length - 1].id);
 			nextTick(() => {
-				const list = this.$el.querySelector('.product-list');
+				const list = this.$el.querySelector('.list');
 				list.scrollTop = list.scrollHeight;
 				this.$el.querySelector('#name-inp').focus();
 			});
@@ -64,7 +69,7 @@ export default{
 <template>
     <div class="container">
 		<h1>Products</h1>
-		<TransitionGroup tag="ul" name="list" class="product-list">
+		<List>
 			<li class="list-item" v-for="{id, name, price, buyer, consumers} in products" :class="{editing: id === editId}" :key="id">
 				<div class="details">
                     <div class="details-top">
@@ -123,53 +128,35 @@ export default{
 				<i v-else class="bi bi-check-lg i-pointer" @click="stopEdit()"></i>
 				<i class="bi bi-trash-fill i-pointer" @click="remove(id)"></i>
 			</li>
-			<li class="new-product-btn" @click="add()" :key="-1"><i class="bi bi-bag-plus-fill"></i>Add new</li>
-		</TransitionGroup>
+			<li class="list-btn" @click="add()" :key="-1"><i class="bi bi-bag-plus-fill"></i>Add new</li>
+		</List>
         <router-link class="next-btn" to="/bill">Next &#8594; Calculate cost</router-link>
 	</div>
 </template>
 
 <style scoped lang="sass">
 @import '../styles/_vars.sass'
-h1
-    border-bottom: 3px solid $color-main
-    padding-bottom: 20px
-    margin: 10px 8px 35px
-ul
-    display: block
-    height: 75%
-    list-style: none
-    padding: 0
-    overflow-x: hidden
-    overflow-y: auto
-    li
-        padding: 15px 25px
-        margin: 10px 10px 0
-        border: 2px solid lighten($color-main, 50%)
-        border-radius: 8px
-        font-size: 1.5em
-        font-weight: 600
-        transition: scale 200ms ease-out
-        &.list-item
-            display: flex
-            align-items: center
-            justify-content: space-between
-            gap: 15px
-            margin-bottom: 10px
-            i
-                opacity: 0
-                &:hover
-                    color: $color-active
-        &:hover
-            i
-                opacity: 1
+li
+    &.list-item
+        display: flex
+        align-items: center
+        justify-content: space-between
+        gap: 15px
+        margin-bottom: 10px
         i
-            color: $color-main
-            transition: color 150ms ease-out, opacity 100ms ease-out
-        .buyer-select i
-            opacity: 1
+            opacity: 0
             &:hover
-                color: inherit
+                color: $color-active
+    &:hover
+        i
+            opacity: 1
+    i
+        color: $color-main
+        transition: color 150ms ease-out, opacity 100ms ease-out
+    .buyer-select i
+        opacity: 1
+        &:hover
+            color: inherit
 .details
     flex: 10
     text-align: left
@@ -274,46 +261,4 @@ ul
                 .icon
                     background-color: $color-active
                     color: $color-secondary
-.new-product-btn
-    margin-bottom: 5px
-    @include no-select
-    &:hover
-        background-color: darken($color-secondary, 2%)
-    &:active
-        scale: 0.99
-    i
-        margin-right: 15px
-.next-btn
-    display: block
-    width: 300px
-    margin: auto
-    padding: 10px 20px
-    transition: all 200ms ease
-    @include no-select
-    color: $color-secondary
-    background-color: $color-main
-    font-size: 1.3rem
-    border-radius: 8px
-    &:hover
-        scale: 1.01
-        background-color: lighten($color-main, 10%)
-    &:active
-        scale: 0.99
-i.bi-check-lg
-    font-size: 2rem
-    &:hover
-        color: darkgreen !important
-i.bi-trash-fill:hover
-    color: darkred !important
-.i-pointer
-    cursor: pointer
-.list-move,
-.list-enter-active,
-.list-leave-active
-    transition: all 300ms ease-out
-.list-enter-from,
-.list-leave-to
-    opacity: 0
-    scale: 1 0
-    transform: translateX(30px)
 </style>
