@@ -87,8 +87,8 @@ export default{
                         pays 
                         <span class="money">${{payed.toFixed(2)}}</span>
                     </p>
-                    <p v-for="lender in owed" class="debt">
-                        <span class="name" :transparent="payed > 0">{{name}}</span> 
+                    <p v-for="lender, index in owed" class="debt">
+                        <span class="name" :transparent="payed > 0 || index > 0">{{name}}</span> 
                         owes 
                         <span class="name">{{lender.name}}</span> 
                         <span class="money"> ${{lender.sum.toFixed(2)}}</span>
