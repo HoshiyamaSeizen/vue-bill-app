@@ -14,7 +14,10 @@
 .slide-right-leave-active,
 .slide-left-enter-active,
 .slide-left-leave-active
-    transition: transform 400ms ease-out, opacity 300ms ease-out
+    transition: transform 400ms ease-out, opacity 500ms ease-out
+.fade-enter-active,
+.fade-leave-active
+    transition: opacity 150ms ease-out
 .slide-right-enter-from,
 .slide-left-leave-to
     opacity: 0
@@ -23,4 +26,7 @@
 .slide-right-leave-to
     opacity: 0
     transform: translate(-20%, -50%)
+.fade-enter-from,
+.fade-leave-to
+    opacity: 0
 </style>

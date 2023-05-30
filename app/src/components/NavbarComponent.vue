@@ -13,9 +13,12 @@ main, a
 	margin: auto
 	text-align: center
 nav
+	position: absolute
+	width: 100%
 	display: flex
 	align-items: space-between
 	justify-content: center
 	padding: 20px
 	text-transform: uppercase
+	z-index: 1
 </style>

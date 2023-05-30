@@ -18,7 +18,8 @@ const router = createRouter({
 });
 
 router.afterEach((to, from) => {
-	to.meta.transition = to.name < from.name ?'slide-right' : 'slide-left';
+	if(to.name === 0 || from.name === 0) to.meta.transition = 'fade';
+	else to.meta.transition = to.name < from.name ?'slide-right' : 'slide-left';
 })
 
 export default router
