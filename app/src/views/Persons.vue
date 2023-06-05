@@ -52,7 +52,10 @@ export default{
 			e.preventDefault();
 			this.$el.querySelector(target).click();
 		}
-	}
+	},
+	unmounted() {
+		this.stopEdit();
+	},
 }
 </script>
 

@@ -62,7 +62,10 @@ export default{
 			const el = this.$el.querySelector(target);
 			focus ? el.focus() : el.click();
 		}
-	}
+	},
+    unmounted() {
+		this.stopEdit();
+	},
 }
 </script>
 
