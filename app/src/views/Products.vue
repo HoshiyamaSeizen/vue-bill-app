@@ -127,9 +127,11 @@ export default{
                         </div>
                     </div>
 				</div>
-				<i v-if="id !== editId" class="bi bi-pencil-fill i-pointer" @click="startEdit(id)"></i>
-				<i v-else class="bi bi-check-lg i-pointer" @click="stopEdit()"></i>
-				<i class="bi bi-trash-fill i-pointer" @click="remove(id)"></i>
+                <div class="edit-buttons">
+                    <i v-if="id !== editId" class="bi bi-pencil-fill i-pointer" @click="startEdit(id)"></i>
+                    <i v-else class="bi bi-check-lg i-pointer" @click="stopEdit()"></i>
+                    <i class="bi bi-trash-fill i-pointer" @click="remove(id)"></i>
+                </div>
 			</li>
 			<li class="list-btn" @click="add()" :key="-1"><i class="bi bi-bag-plus-fill"></i>Add new</li>
 		</List>
@@ -145,8 +147,6 @@ li
     &.list-item
         display: flex
         align-items: center
-        justify-content: space-between
-        gap: 15px
         margin-bottom: 10px
         i
             opacity: 0
@@ -162,6 +162,21 @@ li
         opacity: 1
         &:hover
             color: inherit
+    @media screen and (max-width:1023px)
+        flex-flow: column
+        gap: 0 !important
+        & > *
+            align-self: flex-start
+        .details
+            max-width: 100%
+            width: 100%
+        .edit-buttons
+            align-self: center
+.edit-buttons
+    flex: 1
+    display: flex
+    justify-content: flex-end
+    gap: 20px
 .details
     flex: 10
     text-align: left
@@ -203,7 +218,7 @@ li
         .name
             display: block
             font-size: 1.4rem
-            line-height: 1rem
+            line-height: 1.4rem
             max-width: 300px
             @include limit-text
         .price
@@ -273,7 +288,4 @@ li
                 .icon
                     background-color: $color-active
                     color: $color-secondary
-.info-message
-    text-align: center
-    margin-top: 30vh
 </style>

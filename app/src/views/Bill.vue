@@ -124,7 +124,4 @@ export default{
         @include limit-text
     .money
         color: darkgreen
-.info-message
-    text-align: center
-    margin-top: 30vh
 </style>

@@ -56,12 +56,13 @@ a
 
 .container
   position: absolute
-  display: block
+  display: flex
+  flex-flow: column
   width: 80%
   height: 80%
-  top: 50%
+  bottom: 50%
   left: 50%
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, 50%)
   background-color: $color-secondary
   color: $color-text
   border-radius: 20px
@@ -85,8 +86,9 @@ a
 
   .next-btn
     display: block
-    width: 300px
-    margin: auto
+    width: 40%
+    max-width: 300px
+    margin: auto auto 20px
     padding: 10px 20px
     transition: all 200ms ease
     @include no-select
@@ -95,7 +97,38 @@ a
     font-size: 1.3rem
     border-radius: 8px
     &:hover
-        scale: 1.01
-        background-color: lighten($color-main, 10%)
+      scale: 1.01
+      background-color: lighten($color-main, 10%)
     &:active
-        scale: 0.99
+      scale: 0.99
+    @media (max-width:840px)
+      max-width: 840px
+      width: 90%
+
+@media screen and (max-width:1023px)
+  i
+    opacity: 1 !important
+
+@media screen and (max-width:767px), screen and (max-height: 600px)
+  p
+    font-size: 0.9rem
+  .next-btn, .list-btn
+    font-size: 1rem !important
+  h1
+    font-size: 2rem !important
+    margin-bottom: 15px !important
+    padding-bottom: 10px !important
+  .landing a
+    font-size: 1.4rem !important
+  .landing h1
+    font-size: 4rem !important
+
+@media screen and (max-width:600px), screen and (max-height: 600px)
+  .container
+    bottom: 0
+    left: 0
+    transform: none
+    min-width: 100%
+    height: calc(100% - 64px)
+    border-radius: 0
+    padding: 10px 20px

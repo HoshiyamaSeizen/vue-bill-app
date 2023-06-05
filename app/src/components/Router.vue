@@ -21,12 +21,18 @@
 .slide-right-enter-from,
 .slide-left-leave-to
     opacity: 0
-    transform: translate(-80%, -50%)
+    transform: translate(-80%, 50%)
 .slide-left-enter-from,
 .slide-right-leave-to
     opacity: 0
-    transform: translate(-20%, -50%)
+    transform: translate(-20%, 50%)
 .fade-enter-from,
 .fade-leave-to
     opacity: 0
+@media screen and (max-width:600px)
+    .slide-left-enter-from,
+    .slide-right-leave-to,
+    .slide-right-enter-from,
+    .slide-left-leave-to
+        transform: none
 </style>

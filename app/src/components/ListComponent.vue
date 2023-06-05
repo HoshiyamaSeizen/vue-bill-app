@@ -11,15 +11,15 @@
 @import '../styles/_vars.sass'
 .list
     display: block
-    height: 75%
     list-style: none
     padding: 0
     overflow-x: hidden
     overflow-y: auto
+    justify-self: flex-start
 .list-move,
 .list-enter-active,
 .list-leave-active
-    transition: all 300ms ease-out
+    transition: all 200ms ease-out
 .list-enter-from,
 .list-leave-to
     opacity: 0
@@ -43,6 +43,9 @@
         scale: 0.99
     i
         margin-right: 15px
+.info-message
+    text-align: center
+    margin-top: auto
 i.bi-check-lg
     font-size: 2rem
     &:hover

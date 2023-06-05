@@ -15,8 +15,8 @@ main, a
 nav
 	position: absolute
 	width: 100%
+	max-height: 64px
 	display: flex
-	align-items: space-between
 	justify-content: center
 	padding: 20px
 	text-transform: uppercase
