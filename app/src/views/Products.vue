@@ -204,10 +204,14 @@ li
             display: block
             font-size: 1.4rem
             line-height: 1rem
+            max-width: 300px
+            @include limit-text
         .price
             display: block
             font-size: 1rem
             color: darkgreen
+            max-width: 300px
+            @include limit-text
     .buyer-select
         flex: 1
         text-align: right
@@ -256,6 +260,9 @@ li
                 display: block
                 font-size: 0.8rem
                 font-weight: 700
+                overflow: hidden
+                white-space: nowrap
+                text-overflow: ellipsis
             .icon
                 margin: 0 auto 4px
             &:hover

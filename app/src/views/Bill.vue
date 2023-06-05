@@ -112,6 +112,7 @@ export default{
 <style scoped lang="sass">
 @import '../styles/_vars.sass'
 .list-item
+    overflow-x: hidden
     p
         text-align: left
         margin-bottom: 0
@@ -120,6 +121,7 @@ export default{
         color: transparent
     .name, .money
         font-weight: 700
+        @include limit-text
     .money
         color: darkgreen
 .info-message

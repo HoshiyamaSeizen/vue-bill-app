@@ -112,6 +112,9 @@ li:not(.list-leave-to)
 .details
     flex: 10
     text-align: left
+    .name
+        max-width: 300px
+        @include limit-text
     .icon, p
         margin: 0
         display: inline-block

@@ -8,6 +8,11 @@
     -moz-box-shadow: $args
     box-shadow: $args
 
+@mixin limit-text
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+
 $color-main: hsl(36, 23%, 25%)
 $color-secondary: hsl(50, 68%, 88%)
 $color-text: hsl(60, 7%, 23%)
