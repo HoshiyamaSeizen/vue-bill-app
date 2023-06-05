@@ -6,10 +6,10 @@ import Products from './views/Products.vue';
 import Bill from './views/Bill.vue';
 
 const routes = [
-	{ path: '/', component: Home, name: 0 },
-	{ path: '/persons', component: Persons, name: 1 },
-	{ path: '/products', component: Products, name: 2 },
-	{ path: '/bill', component: Bill, name: 3 },
+	{ path: '/', component: Home, name: 1 },
+	{ path: '/persons', component: Persons, name: 2 },
+	{ path: '/products', component: Products, name: 3 },
+	{ path: '/bill', component: Bill, name: 4 },
 ];
 
 const router = createRouter({
@@ -18,7 +18,7 @@ const router = createRouter({
 });
 
 router.afterEach((to, from) => {
-	if(to.name === 0 || from.name === 0) to.meta.transition = 'fade';
+	if(to.name === 1 || from.name === 1) to.meta.transition = 'fade';
 	else to.meta.transition = to.name < from.name ?'slide-right' : 'slide-left';
 })
 
