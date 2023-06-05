@@ -8,7 +8,7 @@ export default {
     }
   },
   getters: {
-    getFirstClientID: state => () => state.clients[0].id
+    getFirstClientID: state => () => state.clients[0]?.id || 0
   },
   mutations: {
     add(state, {name}) {

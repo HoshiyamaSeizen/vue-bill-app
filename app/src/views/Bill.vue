@@ -11,6 +11,7 @@ export default{
     data() {
 		return {
             result: [],
+            someonePays: false,
 		}
 	},
     computed: {
@@ -30,6 +31,9 @@ export default{
             this.result.push({ id, name, payed: 0, consumed: 0, owed: [] })
         });
 
+        // No elements in result means no persons added
+        if(!this.result.length) return;
+
         // Calculate payed money and cost of consumed prouduct for each person - O(m)
         // If we didn't use id to index relation, it would be O(mn)
         this.products.forEach(({buyer, consumers, price}) => {
@@ -47,6 +51,7 @@ export default{
         const lenders = []
         this.result.forEach(c => {
             c.diff = c.payed - c.consumed;
+            if(c.payed) this.someonePays = true;
             if(c.diff > 0) lenders.push({id: c.id, debt: c.diff, name: c.name});
         })
 
@@ -79,7 +84,7 @@ export default{
 <template>
     <div class="container">
 		<h1>Result</h1>
-        <List>
+        <List v-if="clients.length && products.length && someonePays">
             <template v-for="{id, name, payed, owed} in result">
                 <li class="list-item" v-if="payed > 0 || owed.length > 0" :key="id">
                     <p v-if="payed > 0" class="payment">
@@ -96,7 +101,11 @@ export default{
                 </li>
             </template>
         </List>
-        <router-link class="next-btn" to="/">New bill</router-link>
+        <h4 class="info-message" v-else-if="clients.length && products.length">No one pays anything</h4>
+        <h4 class="info-message" v-else>Persons or products were not added</h4>
+        <router-link v-if="clients.length && products.length" class="next-btn" to="/">New bill</router-link>
+        <router-link v-else-if="clients.length" class="next-btn" to="/products">Add products</router-link>
+        <router-link v-else class="next-btn" to="/persons">Add persons</router-link>
 	</div>
 </template>
 
@@ -113,4 +122,7 @@ export default{
         font-weight: 700
     .money
         color: darkgreen
+.info-message
+    text-align: center
+    margin-top: 30vh
 </style>

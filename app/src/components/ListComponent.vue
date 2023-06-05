@@ -35,6 +35,7 @@
 .list-btn
     cursor: pointer
     margin-bottom: 5px
+    text-align: center
     @include no-select
     &:hover
         background-color: darken($color-secondary, 2%)

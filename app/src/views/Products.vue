@@ -69,7 +69,7 @@ export default{
 <template>
     <div class="container">
 		<h1>Products</h1>
-		<List>
+		<List v-if="clients.length">
 			<li class="list-item" v-for="{id, name, price, buyer, consumers} in products" :class="{editing: id === editId}" :key="id">
 				<div class="details">
                     <div class="details-top">
@@ -130,7 +130,9 @@ export default{
 			</li>
 			<li class="list-btn" @click="add()" :key="-1"><i class="bi bi-bag-plus-fill"></i>Add new</li>
 		</List>
-        <router-link class="next-btn" to="/bill">Next &#8594; Calculate cost</router-link>
+        <h4 class="info-message" v-else>No clients added</h4>
+        <router-link v-if="clients.length" class="next-btn" to="/bill">Next &#8594; Calculate cost</router-link>
+        <router-link v-else class="next-btn" to="/persons">Add persons</router-link>
 	</div>
 </template>
 
@@ -261,4 +263,7 @@ li
                 .icon
                     background-color: $color-active
                     color: $color-secondary
+.info-message
+    text-align: center
+    margin-top: 30vh
 </style>
