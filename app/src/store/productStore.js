@@ -4,7 +4,7 @@ export default {
     namespaced: true,
     state(){
         return {
-            products: [...Array(10).keys()].map(id => Product(id, "Product "+ (id+1), 0, 0))
+            products: [],
         }
     },
     mutations: {

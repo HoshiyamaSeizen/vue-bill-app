@@ -35,7 +35,7 @@ export default{
 		},
 		stopEdit() {
 			if(this.editId === null) return;
-			this.editClient({id: this.editId, name: this.editName});
+			this.editClient({id: this.editId, name: this.editName.trim()});
 			this.editId = null;
 		},
 		add(){
@@ -112,6 +112,7 @@ li:not(.list-leave-to)
 .details
     flex: 10
     text-align: left
+    display: flex
     .name
         max-width: 300px
         @include limit-text
@@ -126,6 +127,7 @@ li:not(.list-leave-to)
         text-align: center
         width: 36px
         height: 36px
+        padding-bottom: 2px
         border-radius: 50%
         color: lighten($color-active, 10%)
         background-color: $color-main

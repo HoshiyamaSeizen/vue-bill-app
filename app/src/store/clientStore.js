@@ -4,7 +4,7 @@ export default {
   namespaced: true,
   state() {
     return {
-      clients: [...Array(10).keys()].map(id => Client(id, "John Doe "+(id+1)))
+      clients: [],
     }
   },
   getters: {

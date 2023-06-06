@@ -11,7 +11,7 @@ export default{
 	data() {
 		return {
 			editName: "",
-            editPrice: 0,
+            editPrice: null,
 			editId: null
 		}
 	},
@@ -41,11 +41,11 @@ export default{
 		},
 		stopEdit() {
 			if(this.editId === null) return;
-			this.editProduct({id: this.editId, name: this.editName, price: this.editPrice});
+			this.editProduct({id: this.editId, name: this.editName.trim(), price: this.editPrice || 0});
 			this.editId = null;
 		},
 		add(){
-			this.addProduct({name: "", price: 0, buyer: 0});
+			this.addProduct({name: "", price: null, buyer: 0});
 			this.startEdit(this.products[this.products.length - 1].id);
 			nextTick(() => {
 				const list = this.$el.querySelector('.list');
@@ -280,6 +280,8 @@ li
                 text-overflow: ellipsis
             .icon
                 margin: 0 auto 4px
+                padding-bottom: 2px
+                font-family: monospace
             &:hover
                 scale: 1.02
             &.selected
