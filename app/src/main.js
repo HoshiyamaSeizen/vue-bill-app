@@ -1,8 +1,9 @@
 import { createApp } from 'vue';
-import router from './Router.js';
+import router from './router.js';
 import store from './store/store.js';
 
 import './styles/style.sass';
+import './styles/animations.sass';
 import App from './App.vue';
 
 createApp(App)

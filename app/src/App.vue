@@ -6,9 +6,9 @@ export default {
 	methods: {
 		changePage(e) {
 			const change = ["ArrowLeft", null, "ArrowRight"].indexOf(e.code)-1;
-			const route = this.$route.name + change;
-			if(route < 1 || route > 4 || change < -1) return;
-			this.$router.push({ name: route })
+			const route = +this.$route.name + change;
+			if(route < 1 || route > 4 || change < -1){ return; }
+			this.$router.push({ name: ''+route })
 		}
 	},
 	created() {
