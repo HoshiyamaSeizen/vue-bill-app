@@ -1,0 +1,134 @@
+@import "~bootstrap/scss/bootstrap.scss"
+@import "~icons/font/bootstrap-icons.css"
+
+@import './_vars.sass'
+
+:root
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif
+	line-height: 1.5
+	font-weight: 400
+
+	color-scheme: light dark
+	color: black
+	background-color: white
+
+	font-synthesis: none
+	text-rendering: optimizeLegibility
+	-webkit-font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale
+	-webkit-text-size-adjust: 100%
+
+::selection 
+		color: $color-active
+		background-color: lighten($color-active, 40%)
+
+body
+	min-height: 100vh
+	background-color: $color-main
+	color: $color-secondary
+	overflow: hidden
+
+.link
+	text-decoration: none
+	color: $color-secondary
+	transition: color 200ms ease-out, border-color 200ms ease-out
+	&:hover
+		color: lighten($color-active, 20%)
+		border-color: lighten($color-active, 20%) !important
+
+::-webkit-scrollbar
+	width: 14px
+::-webkit-scrollbar-track
+	background: transparent
+::-webkit-scrollbar-thumb
+	background: lighten($color-main, 10%)
+	border: 2px solid transparent
+	background-clip: padding-box
+	border-radius: 6px
+	&:hover
+		background: lighten($color-main, 8%)
+		border: none
+	&:active
+		background: lighten($color-main, 4%)
+* /*Firefox*/
+	scrollbar-width: thin
+	scrollbar-color: lighten($color-main, 10%) transparent
+
+.container
+	position: absolute
+	display: flex
+	flex-flow: column
+	width: 80%
+	height: 80%
+	bottom: 50%
+	left: 50%
+	transform: translate(-50%, 50%)
+	background-color: $color-secondary
+	color: $color-text
+	border-radius: 20px
+	padding: 20px 40px
+	@include shadow(0px 2px 4px 5px rgba(0, 0, 0, 0.2))
+
+	h1, h2, h3, h4, h5, h6
+		color: $color-main
+		@include no-select
+		&.title
+			outline: 1px dashed red
+	h1
+		border-bottom: 3px solid $color-main
+		padding-bottom: 20px
+		margin: 10px 8px 35px
+		text-align: center
+
+	a
+		color: $color-active
+		text-align: center
+
+	.next-btn
+		display: block
+		width: 40%
+		max-width: 300px
+		margin: auto auto 20px
+		padding: 10px 20px
+		transition: all 200ms ease
+		@include no-select
+		color: $color-secondary
+		background-color: $color-main
+		font-size: 1.3rem
+		border-radius: 8px
+		&:hover
+			scale: 1.01
+			background-color: lighten($color-main, 10%)
+		&:active
+			scale: 0.99
+		@media (max-width:840px)
+			max-width: 840px
+			width: 90%
+
+@media screen and (max-width:1023px)
+	i
+		opacity: 1 !important
+
+@media screen and (max-width:767px), screen and (max-height: 600px)
+	p
+		font-size: 0.9rem
+	.next-btn, .list-btn
+		font-size: 1rem !important
+	h1
+		font-size: 2rem !important
+		margin-bottom: 15px !important
+		padding-bottom: 10px !important
+	.landing a
+		font-size: 1.4rem !important
+	.landing h1
+		font-size: 4rem !important
+
+@media screen and (max-width:600px), screen and (max-height: 600px)
+	.container
+		bottom: 0
+		left: 0
+		transform: none
+		min-width: 100%
+		height: calc(100% - 64px)
+		border-radius: 0
+		padding: 10px 20px
